@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safinity</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="logo-container">
+        <img src="pic.jpeg" alt="Safinity Logo" class="app-logo">
+    <header>
+        <h1>Safinity</h1>
+        <p>Your Safety, Your Data, Your Control</p>
+        
+        <div id="sync-status" style="color: gray; font-size: 0.9em; margin-bottom: 10px;">Status: Local Only</div>
+        
+        <button id="connect-wallet" onclick="connectWallet()">Connect MetaMask</button>
+        
+        <div class="main-search">
+            <input type="text" id="search-input" placeholder="Search city or area...">
+            <button onclick="searchLocation()" style="background: #2ecc71;">🔍 Search</button>
+        </div>
+        
+        <div class="filter-container">
+            <button onclick="saveToIPFS()" style="background:#f39c12">☁️ Sync to IPFS</button>
+            <button onclick="filterWashrooms('all')">All</button>
+            <button onclick="filterWashrooms('men')">🚹 Men</button>
+            <button onclick="filterWashrooms('women')">🚺 Women</button>
+            <button onclick="filterWashrooms('unisex')">🚻 Unisex</button>
+        </div>
+    </header>
+
+    <div id="map">
+        <div id="add-form" class="hidden">
+            <h3>Add New Washroom</h3>
+            <input type="text" id="loo-name" placeholder="Name (e.g. City Library)">
+            
+            <div style="display: flex; gap: 5px; margin: 10px 0;">
+                <input type="text" id="loo-address" placeholder="Type Address...">
+                <button onclick="findAddress()" style="width: 30%; background: #9b59b6;">Find</button>
+            </div>
+
+            <select id="loo-type">
+                <option value="men">🚹 Men</option>
+                <option value="women">🚺 Women</option>
+                <option value="unisex">🚻 Unisex</option>
+            </select>
+            
+            <p><small>Or click map to drop pin</small></p>
+            <button onclick="saveNewWashroom()">Save Location</button>
+            <button onclick="toggleForm()" style="background:#e74c3c">Cancel</button>
+        </div>
+
+        <button id="add-btn" onclick="toggleForm()">➕ Add a Washroom</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
