@@ -13,10 +13,13 @@
 </head>
 
 <body>
-    <div class="logo-container">
-        <img src="pic.jpeg" alt="Safinity Logo" class="app-logo">
     <header>
-        <h1>Safinity</h1>
+        <h1> 
+            <div class="logo-container">
+                <img src="pic.jpeg" alt="Safinity Logo" class="app-logo">
+            Safinity
+            </div>
+        </h1>
         <p>Your Safety, Your Data, Your Control</p>
         
         <div id="sync-status" style="color: gray; font-size: 0.9em; margin-bottom: 10px;">Status: Local Only</div>
@@ -36,7 +39,6 @@
             <button onclick="filterWashrooms('unisex')">🚻 Unisex</button>
         </div>
     </header>
-
     <div id="map">
         <div id="add-form" class="hidden">
             <h3>Add New Washroom</h3>
@@ -58,8 +60,9 @@
             <button onclick="toggleForm()" style="background:#e74c3c">Cancel</button>
         </div>
 
-        <button id="add-btn" onclick="toggleForm()">➕ Add a Washroom</button>
-    </div>
+        <button id="add-btn1" onclick="toggleForm()">➕ Add a Washroom</button>
+        <button id="add-btn2" onclick="toggleForm()">➕ Add a Homestay</button>
+        <button id="add-btn3" onclick="toggleForm()">➕ Add a Hospital</button>
 
     <script src="script.js"></script>
 </body>
