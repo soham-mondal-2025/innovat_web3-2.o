@@ -18,7 +18,7 @@ async function initBlockchain() {
     if (window.ethereum) {
         try {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const amoyChainId = "0x13882"; // 80002 in Hexadecimal
+            const amoyChainId = "0x13882"; // 80002 in Hexadecimall
 
             try {
                 await window.ethereum.request({
