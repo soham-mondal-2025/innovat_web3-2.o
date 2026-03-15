@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safinity | Web3 Safety Map</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="pic.jpeg" alt="Safinity Logo" class="app-logo">
+            <div class="brand-titles">
+                <h1>Safinity</h1>
+                <p>Your Safety, Your Data, Your Control</p>
+            </div>
+        </div>
+        
+        <div class="nav-actions">
+            <button id="connect-wallet" onclick="connectWallet()" class="wallet-btn">Connect MetaMask</button>
+        </div>
+    </nav>
+
+    <main class="app-container">
+        
+        <div class="features-grid">
+            
+            <div class="feature-box">
+                <div class="box-header">
+                    <span class="box-icon">🔍</span>
+                    <h3>Find Safe Spaces</h3>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search city or area...">
+                    <button onclick="searchLocation()" class="search-btn">Search</button>
+                </div>
+                <div class="filters">
+                    <button onclick="filterWashrooms('all')" class="filter-btn">All</button>
+                    <button onclick="filterWashrooms('men')" class="filter-btn">🚹 Men</button>
+                    <button onclick="filterWashrooms('women')" class="filter-btn">🚺 Women</button>
+                    <button onclick="filterWashrooms('unisex')" class="filter-btn">🚻 Unisex</button>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="box-header">
+                    <span class="box-icon">➕</span>
+                    <h3>Contribute</h3>
+                </div>
+                <p class="box-desc">Add a verified safe space to the permanent blockchain registry.</p>
+                <div class="action-group">
+                    <button onclick="toggleForm()" class="add-btn-new">➕ Add Washroom</button>
+                    <button onclick="saveToIPFS()" class="sync-btn">☁️ Sync to IPFS</button>
+                </div>
+                <div id="sync-status" class="status-indicator">Status: Local Only</div>
+            </div>
+
+            <div class="feature-box sos-box">
+                <div class="box-header">
+                    <span class="box-icon">🚨</span>
+                    <h3>Emergency SOS</h3>
+                </div>
+                <p class="box-desc">Instantly share your live location securely, or track a friend in need.</p>
+                <div class="action-group">
+                    <button onclick="startSOS()" class="sos-btn">🚨 Send SOS</button>
+                    <button onclick="trackSOS()" class="track-btn">📍 Track SOS</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-map-container" class="map-wrapper hidden">
+            <div id="map"></div>
+            
+            <div id="add-form" class="hidden map-overlay-card">
+                <h3>Add Safe Space</h3>
+                <input type="text" id="loo-name" placeholder="Name (e.g. City Mall Loo)">
+                
+                <div class="address-row">
+                    <input type="text" id="loo-address" placeholder="Type Address...">
+                    <button onclick="findAddress()" class="find-btn">Find</button>
+                </div>
+
+                <select id="loo-type">
+                    <option value="men">🚹 Men</option>
+                    <option value="women">🚺 Women</option>
+                    <option value="unisex">🚻 Unisex</option>
+                </select>
+                
+                <p class="map-hint"><small>Or click anywhere on the map to drop a pin</small></p>
+                
+                <div class="form-buttons">
+                    <button onclick="saveNewWashroom()" class="save-btn">Save</button>
+                    <button onclick="toggleForm()" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="audit-trail-container">
+            <div class="audit-header">
+                <h3>🔗 Live On-Chain Audit Trail</h3>
+                <span class="live-pulse">● Live Network</span>
+            </div>
+            
+            <div id="audit-logs" class="audit-logs">
+                <div class="log-entry placeholder" style="color: #6c757d; line-height: 1.6; font-family: 'Poppins', sans-serif;">
+                    <b style="color: var(--deep-blue); font-size: 1.05rem;">💡 What is the Audit Trail?</b><br>
+                    Safinity uses radical Web3 transparency. Unlike traditional apps that hide data in private databases, every safe space added here is pinned to decentralized storage (IPFS) and secured on the Polygon blockchain.<br><br>
+                    <i>👉 Add a washroom and click "☁️ Sync to IPFS" to watch the live, cryptographically verifiable transaction links appear here in real-time!</i>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="sos.js"></script>
+</body>
+</html>
