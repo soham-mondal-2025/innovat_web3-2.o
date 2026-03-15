@@ -2,7 +2,7 @@
   <h1>Safinity</h1>
   <p><b>Your Safety, Your Data, Your Control</b></p>
   <p><i>Mapping clean washrooms and providing serverless emergency SOS tracking through the power of Web3.</i></p>
-  
+  <p><h4>Website link:-</h4>https://static3eternity.vercel.app/</p>
   <br>
 </div>
 
